@@ -51,14 +51,14 @@ async function uploadReport(doc, report) {
     const sheet = await loadSheet(doc, requestedHostname);
 
     const summary = report.summary;
-    const audit = {};
+    const audits = {};
 
-    for (let [key, value] of Object.entries(report.audit)) {
+    for (let [key, value] of Object.entries(report.audits)) {
         switch (value.scoreDisplayMode) {
             case "binary":
-                audit[key] = Boolean(value.score);
+                audits[key] = Boolean(value.score);
             case "numeric": 
-                audit[key] = value.numericValue;
+                audits[key] = value.numericValue;
             default:
                 break;
         }
@@ -78,7 +78,7 @@ async function uploadReport(doc, report) {
         "height": report.configSettings.screenEmulation.height,
         "deviceScaleFactor": report.configSettings.screenEmulation.deviceScaleFactor,
         ...summary, 
-        ...audit
+        ...audits
     }
     const reportHeader = Object.keys(reportData);
     mergeHeader(sheet, reportHeader);
