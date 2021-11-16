@@ -82,7 +82,7 @@ async function uploadReport(doc, report) {
 }
 
 async function loadSheet(doc, requestedHostname, newHeaders) {
-    await doc.loadInfo();
+    await refresh(doc);
 
     if (!(requestedHostname in doc.sheetsByTitle)) {
         console.log(`Creating sheet: ${requestedHostname}`)
@@ -92,7 +92,7 @@ async function loadSheet(doc, requestedHostname, newHeaders) {
         });
     }
 
-    await doc.loadInfo();
+    await refresh(doc);
 
     const sheet = doc.sheetsByTitle[requestedHostname];
     console.log(`Loaded sheet: ${sheet.title}`);
@@ -126,6 +126,11 @@ async function initGSheet() {
 
     console.log(`Loaded ${doc.title}`);
     return doc;
+}
+
+async function refresh(doc) {
+    doc.resetLocalCache();
+    await doc.loadInfo(); 
 }
 
 // async function updateDescriptions(doc, reports) {
