@@ -5,6 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d.%H')"
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v8
         with:
@@ -16,8 +19,10 @@ jobs:
             https://lazada.co.th
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
-      - run: pwd && ls -R ./ 
-      - run: ls -R /Users/lighthouse-ci-action/.lighthouseci
+          resultsPath: ~/${{ steps.date.outputs.date }}/
+      - name: Debug Lighthouse
+        id: date
+        run: pwd && ls -R ./
       # - uses: actions/setup-node@v2
       #   with:
       #     node-version: '14'
