@@ -44,7 +44,7 @@ async function uploadReport(doc, report) {
     for (let [key, value] of Object.entries(report.audits)) {
         switch (value.scoreDisplayMode) {
             case "binary":
-                audits[key] = Boolean(value.score).toString();
+                audits[key] = value.score;
             case "numeric": 
                 audits[key] = value.numericValue;
             default:
