@@ -4,8 +4,10 @@ let fs = require('fs');
 
 let manifests = JSON.parse(process.env.MANIFEST);
 
-function processReport(json) {
-    console.log(json);
+function processReport(lhJson) {
+    console.log(lhJson);
+    let audits = lhJson.audits;
+    console.log(audits["service-worker"].title);
 }
 
 manifests.forEach(manifest => {
