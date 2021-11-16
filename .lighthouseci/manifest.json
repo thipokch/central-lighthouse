@@ -2,8 +2,8 @@
   {
     "url": "https://www.central.co.th/th",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_central_co_th-_th-2021_11_16_17_20_13.report.html",
-    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_central_co_th-_th-2021_11_16_17_20_13.report.json",
+    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_central_co_th-_th-2021_11_16_17_31_39.report.html",
+    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_central_co_th-_th-2021_11_16_17_31_39.report.json",
     "summary": {
       "performance": 0.02,
       "accessibility": 0.69,
@@ -15,10 +15,10 @@
   {
     "url": "https://www.kingpower.com/",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_kingpower_com-_-2021_11_16_17_20_45.report.html",
-    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_kingpower_com-_-2021_11_16_17_20_45.report.json",
+    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_kingpower_com-_-2021_11_16_17_32_12.report.html",
+    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_kingpower_com-_-2021_11_16_17_32_12.report.json",
     "summary": {
-      "performance": 0.04,
+      "performance": 0.15,
       "accessibility": 0.8,
       "best-practices": 0.8,
       "seo": 0.82,
@@ -28,8 +28,8 @@
   {
     "url": "https://monline.com/th",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/monline_com-_th-2021_11_16_17_21_53.report.html",
-    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/monline_com-_th-2021_11_16_17_21_53.report.json",
+    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/monline_com-_th-2021_11_16_17_33_18.report.html",
+    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/monline_com-_th-2021_11_16_17_33_18.report.json",
     "summary": {
       "performance": 0.04,
       "accessibility": 0.73,
@@ -41,10 +41,10 @@
   {
     "url": "https://shopee.co.th/",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/shopee_co_th-_-2021_11_16_17_22_43.report.html",
-    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/shopee_co_th-_-2021_11_16_17_22_43.report.json",
+    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/shopee_co_th-_-2021_11_16_17_34_05.report.html",
+    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/shopee_co_th-_-2021_11_16_17_34_05.report.json",
     "summary": {
-      "performance": 0.04,
+      "performance": 0.1,
       "accessibility": 0.79,
       "best-practices": 0.93,
       "seo": 0.93,
@@ -54,10 +54,10 @@
   {
     "url": "https://www.lazada.co.th/",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_lazada_co_th-_-2021_11_16_17_23_13.report.html",
-    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_lazada_co_th-_-2021_11_16_17_23_13.report.json",
+    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_lazada_co_th-_-2021_11_16_17_34_34.report.html",
+    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_lazada_co_th-_-2021_11_16_17_34_34.report.json",
     "summary": {
-      "performance": 0.39,
+      "performance": 0.42,
       "accessibility": 0.38,
       "best-practices": 0.87,
       "seo": 0.85,
