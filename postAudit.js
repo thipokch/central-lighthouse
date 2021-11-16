@@ -81,7 +81,6 @@ async function uploadReport(doc, report) {
         "width": report.configSettings.screenEmulation.width,
         "height": report.configSettings.screenEmulation.height,
         "deviceScaleFactor": report.configSettings.screenEmulation.deviceScaleFactor,
-        ...summary, 
         ...audits
     }
 
