@@ -126,7 +126,6 @@ const main = async () => {
     const manifest = getManifest();
     const reports = manifest.map( getReport );
 
-    console.log(reports)
     for (const report of reports) {
         await uploadReport(doc, report);
     }
