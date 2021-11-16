@@ -90,6 +90,7 @@ async function loadSheet(doc, requestedHostname) {
     if (!(requestedHostname in doc.sheetsByTitle)) {
         await doc.addSheet({
             title: requestedHostname,
+            headerValues: ["url"]
         });
     }
 
