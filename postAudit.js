@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 const dotenv = require("dotenv");
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 
@@ -26,6 +27,15 @@ function getReport(manifestEntry) {
     return lhJson;
 }
 
+function moveReport(manifestEntry) {
+    const jsonPath = path.parse(manifestEntry.jsonPath);
+    const htmlPath = path.parse(manifestEntry.htmlPath);
+    console.log(`Moving json reports to ${ path.join('./reports', jsonPath.base) }`)
+    console.log(`Moving html reports to ${ path.join('./reports', htmlPath.base) }`)
+    fs.renameSync(jsonPath, path.join('./reports', jsonPath.base))
+    fs.renameSync(htmlPath, path.join('./reports', htmlPath.base))
+}
+
 /*
  * Functions to upload to Google Sheets
  */
@@ -43,7 +53,7 @@ async function uploadReport(doc, report) {
     for (let [key, value] of Object.entries(report.audits)) {
         switch (value.scoreDisplayMode) {
             case "binary":
-                audits[key] = Boolean(value.score);
+                audits[key] = Boolean(value.score).toString();
             case "numeric": 
                 audits[key] = value.numericValue;
             default:
@@ -170,6 +180,7 @@ const main = async () => {
     const doc = await initGSheet();
     const manifest = getManifest();
     const reports = manifest.map( getReport );
+    manifest.forEach( moveReport );
 
     for (const report of reports) {
         await uploadReport(doc, report);
