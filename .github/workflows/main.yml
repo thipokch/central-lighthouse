@@ -34,6 +34,8 @@ jobs:
           GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
           GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
           GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+      - name: Rename Lighthouse Folder
+        run: mv .lighthouseci reports
       - name: Commit Generated Reports
         uses: stefanzweifel/git-auto-commit-action@v4
 
