@@ -98,14 +98,20 @@ async function loadSheet(doc, requestedHostname, newHeaders) {
     console.log(`Loaded sheet: ${sheet.title}`);
 
     await sheet.loadHeaderRow();
-    
+
     const currentHeaders = sheet.headerValues;
     console.log(`Current headers: ${currentHeaders.join(', ')}`);
 
     const diff = newHeaders.filter(header => !currentHeaders.includes(header));
     console.log(`Headers to add: ${diff.join(', ')}`);
 
-    sheet.setHeaderRow([...currentHeaders, ...diff]);
+    const newHeaders = [...currentHeaders, ...diff]
+
+    if(sheet.columnCount < newHeaders.length) {
+        await sheet.resize({ rowCount: sheet.rowCount, columnCount: sheet.columnCount });
+    }
+
+    sheet.setHeaderRow(newHeaders);
 
     return sheet;
 }
