@@ -36,7 +36,11 @@ async function uploadReport(doc, report) {
     console.log(`Request Hostname: ${report.hostname}`);
     const requestedHostname = requestedUrl.hostname;
 
-    const sheet = loadSheet(doc, requestedHostname);
+    const sheet = await loadSheet(doc, requestedHostname);
+
+    const summary = report.summary;
+    const audit = report.audit;
+
 }
 
 async function loadSheet(doc, requestedHostname) {
