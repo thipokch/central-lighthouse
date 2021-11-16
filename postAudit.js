@@ -39,8 +39,9 @@ function processReport(lhJson) {
  * Functions to upload to Google Sheets
  */
 
-async function uploadAudit() {
-    
+async function uploadAudit(doc, lhJson) {
+
+
 }
 
 async function initGSheet() {
