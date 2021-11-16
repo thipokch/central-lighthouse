@@ -31,7 +31,9 @@ function getReport(manifestEntry) {
  */
 
 async function uploadReport(doc, report) {
+    console.log(`Request URL: ${report.requestedUrl}`);
     const requestedUrl = new URL(report.requestedUrl);
+    console.log(`Request Hostname: ${report.hostname}`);
     const requestedHostname = requestedUrl.hostname;
 
     const sheet = loadSheet(doc, requestedHostname);
@@ -78,13 +80,10 @@ const main = async () => {
     const manifest = getManifest();
     const reports = manifest.map( getReport );
 
-    for (const report in reports) {
+    console.log(reports)
+    reports.forEach( report => {
         await uploadReport(doc, report);
-    }
-    
-    const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
-    console.log(sheet.title);
-    console.log(sheet.rowCount);
+    })
 };
 
 main();
