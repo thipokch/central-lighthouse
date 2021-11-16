@@ -24,6 +24,7 @@ function getReport(manifestEntry) {
     let lhJson = JSON.parse(rawJson);
 
     console.log(`JSON loaded: ${lhJson["requestedUrl"]}`);
+    lhJson["filename"] = path.basename(manifestEntry.htmlPath);
     return lhJson;
 }
 
@@ -61,13 +62,21 @@ async function uploadReport(doc, report) {
     }
     
     const reportData = { 
-        "requestedUrl": report.requestedUrl,
+        "url": report.requestedUrl,
+        "hostname": requestedHostname,
+        "performance": report.summary.performance,
+        "accessibility": report.summary.accessibility,
+        "best-practices": report.summary["best-practices"],
+        "seo": report.summary.seo,
+        "pwa": report.summary.pwa,
+        "requestedUrl": ('//gh.thipok.ch/central-lighthouse/reports/' + report.filename),
         "finalUrl": report.finalUrl,
+        "reportUrl": report.reportUrl,
         "fetchTime": report.fetchTime,
         "userAgent": report.userAgent,
         "lighthouseVersion": report.lighthouseVersion,
-        "gatherMode": report.gatherMode,
-        "benchmarkIndex": report.benchmarkIndex,
+        "gatherMode": report.configSettings.gatherMode,
+        "benchmarkIndex": report.environment.benchmarkIndex,
         "formFactor": report.configSettings.formFactor,
         "throttlingMethod": report.configSettings.throttlingMethod,
         "width": report.configSettings.screenEmulation.width,
