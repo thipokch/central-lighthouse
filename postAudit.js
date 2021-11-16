@@ -28,12 +28,12 @@ function getReport(manifestEntry) {
 }
 
 function moveReport(manifestEntry) {
-    const jsonPath = path.parse(manifestEntry.jsonPath);
-    const htmlPath = path.parse(manifestEntry.htmlPath);
-    console.log(`Moving json reports to ${ path.join('./reports', jsonPath.base) }`)
-    console.log(`Moving html reports to ${ path.join('./reports', htmlPath.base) }`)
-    fs.renameSync(jsonPath, path.join('./reports', jsonPath.base))
-    fs.renameSync(htmlPath, path.join('./reports', htmlPath.base))
+    const jsonFilename = path.basename(manifestEntry.jsonPath);
+    const htmlFilename = path.basename(manifestEntry.htmlPath);
+    console.log(`Moving json reports to ${ path.resolve('./reports', jsonFilename) }`)
+    console.log(`Moving html reports to ${ path.resolve('./reports', htmlFilename) }`)
+    fs.renameSync(manifestEntry.jsonPath, path.resolve('./reports', jsonFilename))
+    fs.renameSync(manifestEntry.htmlPath, path.resolve('./reports', htmlFilename))
 }
 
 /*
