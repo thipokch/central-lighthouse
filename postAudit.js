@@ -30,17 +30,41 @@ function getReport(manifestEntry) {
  * Functions to upload to Google Sheets
  */
 
+async function mergeHeader(sheet, newHeaders) {
+    const currentHeaders = await sheet.loadHeaderRow();
+    console.log(`Current headers: ${Array.join(currentHeaders, ', ')}`)
+
+    const diff = newHeaders.filter(header => !currentHeaders.includes(header));
+    console.log(`Headers to add: ${Array.join(diff, ', ')}`)
+
+    sheet.setHeaderRow([...currentHeaders, ...diff])
+    const updatedHeaders = await sheet.loadHeaderRow();
+    console.log(`Updated headers; ${Array.join(updatedHeaders, ', ')}`)
+}
+
 async function uploadReport(doc, report) {
     console.log(`Request URL: ${report.requestedUrl}`);
     const requestedUrl = new URL(report.requestedUrl);
-    console.log(`Request Hostname: ${report.hostname}`);
+    console.log(`Request Hostname: ${requestedUrl.hostname}`);
     const requestedHostname = requestedUrl.hostname;
 
     const sheet = await loadSheet(doc, requestedHostname);
 
     const summary = report.summary;
-    const audit = report.audit;
-    const meta = {
+    const audit = {};
+
+    for (let [key, value] of Object.entries(report.audit)) {
+        switch (value.scoreDisplayMode) {
+            case "binary":
+                audit[key] = Boolean(value.score);
+            case "numeric": 
+                audit[key] = value.numericValue;
+            default:
+                break;
+        }
+    }
+    
+    const reportData = { 
         "requestedUrl": report.requestedUrl,
         "finalUrl": report.finalUrl,
         "fetchTime": report.fetchTime,
@@ -53,10 +77,12 @@ async function uploadReport(doc, report) {
         "width": report.configSettings.screenEmulation.width,
         "height": report.configSettings.screenEmulation.height,
         "deviceScaleFactor": report.configSettings.screenEmulation.deviceScaleFactor,
+        ...summary, 
+        ...audit
     }
+    const reportHeader = Object.keys(reportData);
+    mergeHeader(sheet, reportHeader);
 
-    const header = [ ...summary.keys(), ...audit.keys(), ...meta.keys() ]
-    console.log(header)
 }
 
 async function loadSheet(doc, requestedHostname) {
