@@ -32,14 +32,14 @@ function getReport(manifestEntry) {
 
 async function mergeHeader(sheet, newHeaders) {
     const currentHeaders = await sheet.loadHeaderRow();
-    console.log(`Current headers: ${Array.join(currentHeaders, ', ')}`)
+    console.log(`Current headers: ${currentHeaders.join(', ')}`)
 
     const diff = newHeaders.filter(header => !currentHeaders.includes(header));
-    console.log(`Headers to add: ${Array.join(diff, ', ')}`)
+    console.log(`Headers to add: ${diff.join(', ')}`)
 
     sheet.setHeaderRow([...currentHeaders, ...diff])
     const updatedHeaders = await sheet.loadHeaderRow();
-    console.log(`Updated headers; ${Array.join(updatedHeaders, ', ')}`)
+    console.log(`Updated headers; ${updatedHeaders.join(', ')}`)
 }
 
 async function uploadReport(doc, report) {
@@ -51,7 +51,7 @@ async function uploadReport(doc, report) {
     const sheet = await loadSheet(doc, requestedHostname);
 
     const summary = report.summary;
-    const audits = {};
+    var audits = {};
 
     for (let [key, value] of Object.entries(report.audits)) {
         switch (value.scoreDisplayMode) {
@@ -116,6 +116,15 @@ async function initGSheet() {
 
     console.log(`Loaded ${doc.title}`);
     return doc;
+}
+
+async function updateDescriptions(doc, reports) {
+    const sheet = await loadSheet(doc, 'Description');
+    var auditHeaders = {};
+
+    // for (const report of reports) {
+    //     auditHeaders = {auditHeaders, ...Object.keys(report.audits)}
+    // }
 }
 
 /*
