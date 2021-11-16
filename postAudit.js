@@ -32,14 +32,14 @@ function getReport(manifestEntry) {
 
 async function mergeHeader(sheet, newHeaders) {
     const currentHeaders = await sheet.loadHeaderRow();
-    console.log(`Current headers: ${currentHeaders.join(', ')}`)
+    console.log(`Current headers: ${currentHeaders}`)
 
     const diff = newHeaders.filter(header => !currentHeaders.includes(header));
-    console.log(`Headers to add: ${diff.join(', ')}`)
+    console.log(`Headers to add: ${diff}`)
 
     sheet.setHeaderRow([...currentHeaders, ...diff])
     const updatedHeaders = await sheet.loadHeaderRow();
-    console.log(`Updated headers; ${updatedHeaders.join(', ')}`)
+    console.log(`Updated headers; ${updatedHeaders}`)
 }
 
 async function uploadReport(doc, report) {
@@ -52,6 +52,7 @@ async function uploadReport(doc, report) {
 
     const summary = report.summary;
     var audits = {};
+    // var auditDescriptions = {};
 
     for (let [key, value] of Object.entries(report.audits)) {
         switch (value.scoreDisplayMode) {
@@ -62,6 +63,12 @@ async function uploadReport(doc, report) {
             default:
                 break;
         }
+
+        // auditDescriptions[key] = {
+        //     "field": value.id,
+        //     "title": value.title,
+        //     "description": value.description
+        // }
     }
     
     const reportData = { 
@@ -80,6 +87,7 @@ async function uploadReport(doc, report) {
         ...summary, 
         ...audits
     }
+
     const reportHeader = Object.keys(reportData);
     mergeHeader(sheet, reportHeader);
 
@@ -88,6 +96,7 @@ async function uploadReport(doc, report) {
 async function loadSheet(doc, requestedHostname) {
     await doc.loadInfo();
     if (!(requestedHostname in doc.sheetsByTitle)) {
+        console.log(`Creating sheet: ${requestedHostname}`)
         await doc.addSheet({
             title: requestedHostname,
             headerValues: ["url"]
@@ -95,7 +104,9 @@ async function loadSheet(doc, requestedHostname) {
     }
 
     await doc.loadInfo();
-    return doc.sheetsByTitle[requestedHostname];
+    const sheet = doc.sheetsByTitle[requestedHostname];
+    console.log(`Loaded sheet: ${sheet.title}`)
+    return sheet;
 }
 
 async function initGSheet() {
@@ -118,14 +129,24 @@ async function initGSheet() {
     return doc;
 }
 
-async function updateDescriptions(doc, reports) {
-    const sheet = await loadSheet(doc, 'Description');
-    var auditHeaders = {};
+// async function updateDescriptions(doc, reports) {
+//     const sheet = await loadSheet(doc, 'Description');
+//     var auditHeaders = {};
 
-    // for (const report of reports) {
-    //     auditHeaders = {auditHeaders, ...Object.keys(report.audits)}
-    // }
-}
+//     for (const report of reports) {
+//         le
+//         for (let [key, value] of Object.entries(report.audits)) {
+//             switch (value.scoreDisplayMode) {
+//                 case "binary":
+//                     audits[key] = Boolean(value.score);
+//                 case "numeric": 
+//                     audits[key] = value.numericValue;
+//                 default:
+//                     break;
+//             }
+//         }
+//     }
+// }
 
 /*
  * Run
