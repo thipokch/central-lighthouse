@@ -1,0 +1,67 @@
+[
+  {
+    "url": "https://www.central.co.th/th",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_central_co_th-_th-2021_11_16_17_51_10.report.html",
+    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_central_co_th-_th-2021_11_16_17_51_10.report.json",
+    "summary": {
+      "performance": 0.06,
+      "accessibility": 0.69,
+      "best-practices": 0.73,
+      "seo": 0.91,
+      "pwa": 0.83
+    }
+  },
+  {
+    "url": "https://www.kingpower.com/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_kingpower_com-_-2021_11_16_17_51_44.report.html",
+    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_kingpower_com-_-2021_11_16_17_51_44.report.json",
+    "summary": {
+      "performance": 0.15,
+      "accessibility": 0.8,
+      "best-practices": 0.8,
+      "seo": 0.82,
+      "pwa": 0.42
+    }
+  },
+  {
+    "url": "https://monline.com/th",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/monline_com-_th-2021_11_16_17_52_50.report.html",
+    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/monline_com-_th-2021_11_16_17_52_50.report.json",
+    "summary": {
+      "performance": 0.05,
+      "accessibility": 0.73,
+      "best-practices": 0.8,
+      "seo": 0.78,
+      "pwa": 0.83
+    }
+  },
+  {
+    "url": "https://shopee.co.th/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/shopee_co_th-_-2021_11_16_17_53_40.report.html",
+    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/shopee_co_th-_-2021_11_16_17_53_40.report.json",
+    "summary": {
+      "performance": 0.08,
+      "accessibility": 0.79,
+      "best-practices": 0.93,
+      "seo": 0.93,
+      "pwa": 1
+    }
+  },
+  {
+    "url": "https://www.lazada.co.th/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_lazada_co_th-_-2021_11_16_17_54_11.report.html",
+    "jsonPath": "/home/runner/work/central-lighthouse/central-lighthouse/.lighthouseci/www_lazada_co_th-_-2021_11_16_17_54_11.report.json",
+    "summary": {
+      "performance": 0.4,
+      "accessibility": 0.38,
+      "best-practices": 0.87,
+      "seo": 0.85,
+      "pwa": 0.42
+    }
+  }
+]
