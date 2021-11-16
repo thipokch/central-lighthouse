@@ -30,25 +30,11 @@ function getReport(manifestEntry) {
  * Functions to upload to Google Sheets
  */
 
-async function mergeHeader(sheet, newHeaders) {
-    const currentHeaders = await sheet.loadHeaderRow();
-    console.log(`Current headers: ${currentHeaders}`)
-
-    const diff = newHeaders.filter(header => !currentHeaders.includes(header));
-    console.log(`Headers to add: ${diff}`)
-
-    sheet.setHeaderRow([...currentHeaders, ...diff])
-    const updatedHeaders = await sheet.loadHeaderRow();
-    console.log(`Updated headers; ${updatedHeaders}`)
-}
-
 async function uploadReport(doc, report) {
     console.log(`Request URL: ${report.requestedUrl}`);
     const requestedUrl = new URL(report.requestedUrl);
     console.log(`Request Hostname: ${requestedUrl.hostname}`);
     const requestedHostname = requestedUrl.hostname;
-
-    const sheet = await loadSheet(doc, requestedHostname);
 
     const summary = report.summary;
     var audits = {};
@@ -89,11 +75,13 @@ async function uploadReport(doc, report) {
     }
 
     const reportHeader = Object.keys(reportData);
-    mergeHeader(sheet, reportHeader);
+
+    const sheet = await loadSheet(doc, requestedHostname);
+    await sheet.addRow(reportData);
 
 }
 
-async function loadSheet(doc, requestedHostname) {
+async function loadSheet(doc, requestedHostname, newHeaders) {
     await doc.loadInfo();
     if (!(requestedHostname in doc.sheetsByTitle)) {
         console.log(`Creating sheet: ${requestedHostname}`)
@@ -104,8 +92,20 @@ async function loadSheet(doc, requestedHostname) {
     }
 
     await doc.loadInfo();
+
     const sheet = doc.sheetsByTitle[requestedHostname];
-    console.log(`Loaded sheet: ${sheet.title}`)
+    console.log(`Loaded sheet: ${sheet.title}`);
+   
+    const sheet = doc.sheetsByTitle[requestedHostname];
+
+    const currentHeaders = await sheet.loadHeaderRow();
+    console.log(`Current headers: ${currentHeaders}`);
+
+    const diff = newHeaders.filter(header => !currentHeaders.includes(header));
+    console.log(`Headers to add: ${diff}`);
+
+    sheet.setHeaderRow([...currentHeaders, ...diff]);
+
     return sheet;
 }
 
