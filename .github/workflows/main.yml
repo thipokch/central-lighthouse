@@ -6,6 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Audit URLs using Lighthouse
+        id: audit
         uses: treosh/lighthouse-ci-action@v8
         with:
           urls: |
@@ -22,3 +23,7 @@ jobs:
             cache: 'npm'
       - name: Process Lighthouse Report
         run: node ./postAudit.js
+        env:
+          RESULTPATH: ${{ steps.audit.resultsPath }}
+          ASSERTIONRESULTS: ${{ steps.audit.assertionResults }}
+          MANIFEST: ${{ steps.audit.manifest }}

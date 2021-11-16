@@ -11,8 +11,9 @@ function processReport(url) {
     console.log(lhJson);
 }
 
-lhUrls.forEach(lhUrl => {
-    processReport(lhUrl)
-})
+// lhUrls.forEach(lhUrl => {
+//     processReport(lhUrl)
+// })
 
+console.log(process.env);
 
