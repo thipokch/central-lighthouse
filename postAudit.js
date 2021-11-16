@@ -108,10 +108,10 @@ async function loadSheet(doc, requestedHostname, headers) {
     const newHeaders = [...currentHeaders, ...diff]
 
     if(sheet.columnCount < newHeaders.length) {
-        await sheet.resize({ rowCount: sheet.rowCount, columnCount: sheet.columnCount });
+        await sheet.resize({ rowCount: sheet.rowCount, columnCount: Math.pow( 2, Math.ceil( Math.log2(sheet.columnCount) ) ) });
     }
 
-    sheet.setHeaderRow(newHeaders);
+    await sheet.setHeaderRow(newHeaders);
 
     return sheet;
 }
