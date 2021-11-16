@@ -25,7 +25,7 @@ function getReport(manifestEntry) {
 
     console.log(`JSON loaded: ${lhJson["requestedUrl"]}`);
     lhJson["filename"] = path.basename(manifestEntry.htmlPath);
-    return lhJson;
+    return [...lhJson, ...manifestEntry.summary];
 }
 
 /*
@@ -38,7 +38,6 @@ async function uploadReport(doc, report) {
     console.log(`Request Hostname: ${requestedUrl.hostname}`);
     const requestedHostname = requestedUrl.hostname;
 
-    const summary = report.summary;
     var audits = {};
     // var auditDescriptions = {};
 
@@ -64,11 +63,11 @@ async function uploadReport(doc, report) {
     const reportData = { 
         "url": report.requestedUrl,
         "hostname": requestedHostname,
-        "performance": report.summary.performance,
-        "accessibility": report.summary.accessibility,
-        "best-practices": report.summary["best-practices"],
-        "seo": report.summary.seo,
-        "pwa": report.summary.pwa,
+        "performance": report.performance,
+        "accessibility": report.accessibility,
+        "best-practices": report["best-practices"],
+        "seo": report.seo,
+        "pwa": report.pwa,
         "requestedUrl": ('//gh.thipok.ch/central-lighthouse/reports/' + report.filename),
         "finalUrl": report.finalUrl,
         "reportUrl": report.reportUrl,
