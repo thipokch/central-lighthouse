@@ -2,18 +2,15 @@
 
 let fs = require('fs');
 
-let lhReportDirectory = './.lighthouseci'
-let lhUrls = [ 'central.co.th', 'kingpower.com', 'monline.com', 'shopee.co.th', 'lazada.co.th']
+let manifests = JSON.parse(process.env.MANIFEST);
 
-function processReport(url) {
-    let rawdata = fs.readFileSync(lhReportDirectory + '/' + url.replaceAll('.','_') + '.report.json' );
-    let lhJson = JSON.parse(rawdata);
+function processReport(reportManifest) {
+    let rawJson = fs.readFileSync( reportManifest.jsonPath );
+    let lhJson = JSON.parse(rawJson);
     console.log(lhJson);
 }
 
-// lhUrls.forEach(lhUrl => {
-//     processReport(lhUrl)
-// })
-
-console.log(process.env);
+manifests.forEach(manifest =>
+    processReport(manifest)
+)
 
