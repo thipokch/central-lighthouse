@@ -25,7 +25,7 @@ function getReport(manifestEntry) {
 
     console.log(`JSON loaded: ${lhJson["requestedUrl"]}`);
     lhJson["filename"] = path.basename(manifestEntry.htmlPath);
-    return [...lhJson, ...manifestEntry.summary];
+    return {...lhJson, ...manifestEntry.summary};
 }
 
 /*
