@@ -101,9 +101,9 @@ const main = async () => {
     const reports = manifest.map( getReport );
 
     console.log(reports)
-    reports.forEach( report => {
+    for (const report of reports) {
         await uploadReport(doc, report);
-    })
+    }
 };
 
 main();
