@@ -76,13 +76,14 @@ async function uploadReport(doc, report) {
 
     const reportHeader = Object.keys(reportData);
 
-    const sheet = await loadSheet(doc, requestedHostname);
+    const sheet = await loadSheet(doc, requestedHostname, reportHeader);
     await sheet.addRow(reportData);
 
 }
 
 async function loadSheet(doc, requestedHostname, newHeaders) {
     await doc.loadInfo();
+
     if (!(requestedHostname in doc.sheetsByTitle)) {
         console.log(`Creating sheet: ${requestedHostname}`)
         await doc.addSheet({
