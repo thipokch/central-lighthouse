@@ -27,15 +27,6 @@ function getReport(manifestEntry) {
     return lhJson;
 }
 
-function moveReport(manifestEntry) {
-    const jsonFilename = path.basename(manifestEntry.jsonPath);
-    const htmlFilename = path.basename(manifestEntry.htmlPath);
-    console.log(`Moving json reports to ${ path.resolve('./reports', jsonFilename) }`)
-    console.log(`Moving html reports to ${ path.resolve('./reports', htmlFilename) }`)
-    fs.renameSync(manifestEntry.jsonPath, path.resolve('./reports', jsonFilename))
-    fs.renameSync(manifestEntry.htmlPath, path.resolve('./reports', htmlFilename))
-}
-
 /*
  * Functions to upload to Google Sheets
  */
@@ -180,7 +171,6 @@ const main = async () => {
     const doc = await initGSheet();
     const manifest = getManifest();
     const reports = manifest.map( getReport );
-    manifest.forEach( moveReport );
 
     for (const report of reports) {
         await uploadReport(doc, report);
