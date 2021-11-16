@@ -21,7 +21,9 @@ jobs:
         with:
             node-version: '14'
       - name: Process Lighthouse Report
-        run: node ./postAudit.js
+        run: |
+          npm install &&
+          node ./postAudit.js
         env:
           RESULTPATH: ${{ steps.audit.outputs.resultsPath }}
           ASSERTIONRESULTS: ${{ steps.audit.outputs.assertionResults }}
