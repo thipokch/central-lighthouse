@@ -40,7 +40,23 @@ async function uploadReport(doc, report) {
 
     const summary = report.summary;
     const audit = report.audit;
+    const meta = {
+        "requestedUrl": report.requestedUrl,
+        "finalUrl": report.finalUrl,
+        "fetchTime": report.fetchTime,
+        "userAgent": report.userAgent,
+        "lighthouseVersion": report.lighthouseVersion,
+        "gatherMode": report.gatherMode,
+        "benchmarkIndex": report.benchmarkIndex,
+        "formFactor": report.configSettings.formFactor,
+        "throttlingMethod": report.configSettings.throttlingMethod,
+        "width": report.configSettings.screenEmulation.width,
+        "height": report.configSettings.screenEmulation.height,
+        "deviceScaleFactor": report.configSettings.screenEmulation.deviceScaleFactor,
+    }
 
+    const header = [ ...summary.keys(), ...audit.keys(), ...meta.keys() ]
+    console.log(header)
 }
 
 async function loadSheet(doc, requestedHostname) {
