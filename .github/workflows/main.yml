@@ -23,6 +23,6 @@ jobs:
       - name: Process Lighthouse Report
         run: node ./postAudit.js
         env:
-          RESULTPATH: ${{ steps.audit.resultsPath }}
-          ASSERTIONRESULTS: ${{ steps.audit.assertionResults }}
-          MANIFEST: ${{ steps.audit.manifest }}
+          RESULTPATH: ${{ steps.audit.output.resultsPath }}
+          ASSERTIONRESULTS: ${{ steps.audit.output.assertionResults }}
+          MANIFEST: ${{ steps.audit.output.manifest }}

@@ -4,13 +4,14 @@ let fs = require('fs');
 
 let manifests = JSON.parse(process.env.MANIFEST);
 
-function processReport(reportManifest) {
-    let rawJson = fs.readFileSync( reportManifest.jsonPath );
-    let lhJson = JSON.parse(rawJson);
-    console.log(lhJson);
+function processReport(json) {
+    console.log(json);
 }
 
-manifests.forEach(manifest =>
-    processReport(manifest)
-)
+manifests.forEach(manifest => {
+    let rawJson = fs.readFileSync( manifest.jsonPath );
+    let lhJson = JSON.parse(rawJson);
+
+    processReport(lhJson);
+})
 
