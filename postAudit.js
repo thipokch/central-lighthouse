@@ -96,8 +96,6 @@ async function loadSheet(doc, requestedHostname, newHeaders) {
 
     const sheet = doc.sheetsByTitle[requestedHostname];
     console.log(`Loaded sheet: ${sheet.title}`);
-   
-    const sheet = doc.sheetsByTitle[requestedHostname];
 
     const currentHeaders = await sheet.loadHeaderRow();
     console.log(`Current headers: ${currentHeaders}`);
