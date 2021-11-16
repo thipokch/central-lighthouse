@@ -93,11 +93,12 @@ async function loadSheet(doc, requestedHostname, newHeaders) {
     }
 
     await refresh(doc);
-    await sheet.loadHeaderRow();
 
     const sheet = doc.sheetsByTitle[requestedHostname];
     console.log(`Loaded sheet: ${sheet.title}`);
 
+    await sheet.loadHeaderRow();
+    
     const currentHeaders = sheet.headerValues;
     console.log(`Current headers: ${currentHeaders.join(', ')}`);
 
