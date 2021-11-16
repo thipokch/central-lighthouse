@@ -39,6 +39,10 @@ function processReport(lhJson) {
  * Functions to upload to Google Sheets
  */
 
+async function uploadAudit() {
+    
+}
+
 async function initGSheet() {
     console.log('Initializing Google Sheets...');
     const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID);
@@ -63,8 +67,9 @@ async function initGSheet() {
  * Run
  */
 
-const doc = await initGSheet();
-const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
-console.log(sheet.title);
-console.log(sheet.rowCount);
-
+(async () => {
+    const doc = await initGSheet();
+    const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
+    console.log(sheet.title);
+    console.log(sheet.rowCount);
+})();
