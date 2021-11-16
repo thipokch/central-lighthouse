@@ -21,7 +21,7 @@ jobs:
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
           resultsPath: ~/${{ steps.date.outputs.date }}/
       - name: Debug Lighthouse
-        id: date
+        id: debug
         run: pwd && ls -R ./
       # - uses: actions/setup-node@v2
       #   with:
