@@ -44,6 +44,9 @@ async function uploadAudit(doc, lhJson) {
 
 }
 
+async function loadSheet(doc, sheetname) {
+}
+
 async function initGSheet() {
     console.log('Initializing Google Sheets...');
     const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID);
@@ -55,7 +58,7 @@ async function initGSheet() {
         // see "Authentication" section in docs for more info
         client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
         private_key: process.env.GOOGLE_PRIVATE_KEY,
-    });
+    })
     
     console.log('Loading Google Sheets...');
     await doc.loadInfo(); // loads document properties and worksheets
@@ -68,9 +71,11 @@ async function initGSheet() {
  * Run
  */
 
-(async () => {
+const main = async () => {
     const doc = await initGSheet();
     const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
     console.log(sheet.title);
     console.log(sheet.rowCount);
-})();
+};
+
+main();
