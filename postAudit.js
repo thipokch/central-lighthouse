@@ -81,7 +81,7 @@ async function uploadReport(doc, report) {
 
 }
 
-async function loadSheet(doc, requestedHostname, newHeaders) {
+async function loadSheet(doc, requestedHostname, headers) {
     await refresh(doc);
 
     if (!(requestedHostname in doc.sheetsByTitle)) {
@@ -102,7 +102,7 @@ async function loadSheet(doc, requestedHostname, newHeaders) {
     const currentHeaders = sheet.headerValues;
     console.log(`Current headers: ${currentHeaders.join(', ')}`);
 
-    const diff = newHeaders.filter(header => !currentHeaders.includes(header));
+    const diff = headers.filter(header => !currentHeaders.includes(header));
     console.log(`Headers to add: ${diff.join(', ')}`);
 
     const newHeaders = [...currentHeaders, ...diff]
