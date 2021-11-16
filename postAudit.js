@@ -93,15 +93,16 @@ async function loadSheet(doc, requestedHostname, newHeaders) {
     }
 
     await refresh(doc);
+    await sheet.loadHeaderRow();
 
     const sheet = doc.sheetsByTitle[requestedHostname];
     console.log(`Loaded sheet: ${sheet.title}`);
 
-    const currentHeaders = await sheet.loadHeaderRow();
-    console.log(`Current headers: ${currentHeaders}`);
+    const currentHeaders = sheet.headerValues;
+    console.log(`Current headers: ${currentHeaders.join(', ')}`);
 
     const diff = newHeaders.filter(header => !currentHeaders.includes(header));
-    console.log(`Headers to add: ${diff}`);
+    console.log(`Headers to add: ${diff.join(', ')}`);
 
     sheet.setHeaderRow([...currentHeaders, ...diff]);
 
