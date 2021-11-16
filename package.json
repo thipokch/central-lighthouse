@@ -14,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/thipokch/central-lighthouse/issues"
   },
-  "homepage": "https://github.com/thipokch/central-lighthouse#readme"
+  "homepage": "https://github.com/thipokch/central-lighthouse#readme",
+  "dependencies": {
+    "google-spreadsheet": "^3.2.0"
+  }
 }
